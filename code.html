@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Youngmin.dev - 신입 개발자 포트폴리오</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Pretendard Font -->
+<link as="style" crossorigin="" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#6a5188",
+                        "primary-container": "#8369a3",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#fffbff",
+                        "secondary": "#246a52",
+                        "secondary-container": "#a8eecf",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#296e56",
+                        "tertiary": "#626117",
+                        "tertiary-container": "#b1af5d",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f8f9fa",
+                        "on-background": "#191c1d",
+                        "surface": "#f8f9fa",
+                        "on-surface": "#191c1d",
+                        "surface-variant": "#e1e3e4",
+                        "on-surface-variant": "#4a454e",
+                        "outline": "#7b757f",
+                        "outline-variant": "#ccc4cf",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "md": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-lg": "32px",
+                        "max-width": "1140px",
+                        "container-padding-mobile": "20px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "section-padding": "80px"
+                    },
+                    "fontFamily": {
+                        "sans": ["'Pretendard Variable'", "Pretendard", "-apple-system", "BlinkMacSystemFont", "system-ui", "Roboto", "'Helvetica Neue'", "'Segoe UI'", "'Apple SD Gothic Neo'", "'Noto Sans KR'", "'Malgun Gothic'", "'Apple Color Emoji'", "'Segoe UI Emoji'", "'Segoe UI Symbol'", "sans-serif"],
+                        "jetbrains": ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif; }
+        .font-jetbrains { font-family: 'JetBrains Mono', monospace; }
+        .nav-scrolled { border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .tech-tag {
+            @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-surface-variant text-on-surface-variant border border-outline-variant font-jetbrains shadow-sm;
+        }
+        .mockup-window { @apply bg-white rounded-lg border border-outline-variant shadow-sm overflow-hidden flex flex-col; }
+        .mockup-header { @apply bg-surface-variant border-b border-outline-variant p-2 flex items-center gap-2; }
+        .mockup-dot { @apply w-2.5 h-2.5 rounded-full; }
+        .mockup-content { @apply p-4 flex-1 overflow-hidden relative; }
+        .tab-btn.active { @apply bg-primary text-on-primary border-primary; }
+        .troubleshooting-item { display: none; }
+        .troubleshooting-item.active { display: block; }
+        .card-shadow { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+        }
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #f8f9fa;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #ccc4cf;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 1rem;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        .close-btn {
+            color: #7b757f;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #191c1d;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container">
+<nav class="fixed top-0 w-full z-50 transition-all duration-300 bg-surface/90 backdrop-blur-md border-b border-surface-variant nav-scrolled shadow-sm" id="navbar">
+<div class="flex justify-between items-center max-w-max-width mx-auto px-gutter h-16">
+<a class="text-2xl font-bold text-primary flex items-center gap-2" href="#">
+<span class="material-symbols-outlined">terminal</span>
+            Youngmin.dev
+        </a>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-base text-on-surface-variant pb-1 hover:text-primary transition-all duration-300 font-medium" href="#tech-stack">Tech Stack</a>
+<a class="text-base text-on-surface-variant pb-1 hover:text-primary transition-all duration-300 font-medium" href="#projects">Projects</a>
+<a class="text-base text-on-surface-variant pb-1 hover:text-primary transition-all duration-300 font-medium" href="#troubleshooting">Troubleshooting</a>
+<a class="text-base text-on-surface-variant pb-1 hover:text-primary transition-all duration-300 font-medium" href="#docs">Docs</a>
+<a class="text-base text-on-surface-variant pb-1 hover:text-primary transition-all duration-300 font-medium" href="#about">About</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="hidden md:flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors shadow-sm" href="https://docs.google.com/document/d/1_YOUR_RESUME_LINK/edit?usp=sharing" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-sm">download</span>
+                이력서 (Docs)
+            </a>
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-section-padding">
+<!-- Hero Section -->
+<section class="max-w-max-width mx-auto px-container-padding-mobile md:px-gutter py-section-padding">
+<div class="flex flex-col lg:flex-row items-center gap-stack-lg">
+<div class="flex-1 flex flex-col items-start gap-stack-md">
+<div class="inline-flex items-center gap-2 bg-secondary-container text-on-secondary-container px-3 py-1.5 rounded-md text-xs border border-secondary/20 font-jetbrains card-shadow font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                    Status: Backend Developer (Ready for hire)
+                </div>
+<h1 class="text-4xl md:text-5xl text-on-surface leading-tight font-bold">화면부터 API, 데이터 흐름까지 연결해 구현하는<br/>신입 개발자 <span class="font-bold text-primary">이영민</span>입니다.</h1>
+<p class="text-lg text-on-surface-variant max-w-2xl mt-4 leading-relaxed">React와 Spring Boot 기반의 풀스택 구현 경험을 바탕으로, 사용자 화면부터 데이터베이스까지 이어지는 서비스의 전체 흐름을 이해하고 구현하는 데 집중합니다.</p>
+<div class="flex flex-wrap gap-4 mt-stack-md w-full sm:w-auto">
+<a class="flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors shadow-sm w-full sm:w-auto" href="#projects">
+<span class="material-symbols-outlined text-sm">code</span>
+                        주요 프로젝트 보기
+                    </a>
+<a aria-disabled="true" class="flex items-center justify-center gap-2 bg-surface text-on-surface border border-outline px-6 py-3 rounded-md text-sm font-medium hover:bg-surface-variant transition-colors w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed card-shadow" href="#" onclick="event.preventDefault();">
+<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path></svg>
+                        GitHub (준비 중)
+                    </a>
+</div>
+<div class="mt-8 flex flex-wrap items-center gap-4 text-on-surface-variant text-xs font-jetbrains">
+<span class="tech-tag">Full-stack Flow</span>
+<span class="tech-tag">Backend Focus</span>
+<span class="tech-tag">Team Project</span>
+<span class="tech-tag">Documentation</span>
+</div>
+</div>
+<div class="flex-1 w-full relative">
+<div class="mockup-window aspect-[4/3] w-full card-shadow">
+<div class="mockup-header">
+<div class="mockup-dot bg-red-400"></div>
+<div class="mockup-dot bg-yellow-400"></div>
+<div class="mockup-dot bg-green-400"></div>
+<span class="ml-2 font-jetbrains text-xs text-on-surface-variant">architecture-diagram.css</span>
+</div>
+<div class="mockup-content bg-surface flex flex-col items-center justify-center p-6">
+<div class="w-full max-w-sm flex flex-col gap-8 items-center relative">
+<div class="w-24 h-16 border-2 border-primary rounded flex items-center justify-center bg-primary/10 text-primary font-bold text-xs card-shadow">Client</div>
+<div class="w-0.5 h-8 bg-outline absolute top-16"></div>
+<div class="w-32 h-12 border-2 border-secondary rounded flex items-center justify-center bg-secondary/10 text-secondary font-bold text-xs mt-8 z-10 card-shadow">Load Balancer</div>
+<div class="w-48 h-0.5 bg-outline absolute top-[136px]"></div>
+<div class="w-0.5 h-6 bg-outline absolute top-[136px] left-[52px]"></div>
+<div class="w-0.5 h-6 bg-outline absolute top-[136px] right-[52px]"></div>
+<div class="flex gap-8 mt-6 z-10 w-full justify-center px-4">
+<div class="w-24 h-16 border-2 border-on-surface rounded flex items-center justify-center bg-surface text-on-surface font-bold text-xs shadow-sm card-shadow">Server A</div>
+<div class="w-24 h-16 border-2 border-on-surface rounded flex items-center justify-center bg-surface text-on-surface font-bold text-xs shadow-sm card-shadow">Server B</div>
+</div>
+<div class="w-0.5 h-6 bg-outline absolute top-[228px] left-[78px]"></div>
+<div class="w-0.5 h-6 bg-outline absolute top-[228px] right-[78px]"></div>
+<div class="w-32 h-0.5 bg-outline absolute top-[252px]"></div>
+<div class="w-0.5 h-6 bg-outline absolute top-[252px]"></div>
+<div class="w-24 h-20 border-2 border-blue-600 rounded-lg flex items-center justify-center bg-blue-50 text-blue-800 font-bold text-xs mt-12 z-10 card-shadow">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-lg">database</span>
+<span class="mt-1">MySQL</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Tech Stack Section -->
+<section class="bg-surface border-y border-outline-variant py-16" id="tech-stack">
+<div class="max-w-max-width mx-auto px-container-padding-mobile md:px-gutter">
+<div class="flex items-center gap-2 mb-8">
+<span class="material-symbols-outlined text-primary text-3xl">layers</span>
+<h2 class="text-3xl text-on-surface font-bold">Tech Stack</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Frontend -->
+<div class="bg-background rounded-lg p-6 border border-outline-variant card-shadow">
+<h3 class="text-xl text-on-surface mb-4 flex items-center gap-2 border-b border-outline-variant pb-2 font-bold">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">web</span> Frontend
+                    </h3>
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="tech-tag">React</span>
+<span class="tech-tag">Vite</span>
+<span class="tech-tag">JavaScript</span>
+<span class="tech-tag">HTML</span>
+<span class="tech-tag">CSS</span>
+<span class="tech-tag">MUI</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">사용자 화면 구현 및 REST API 연동 경험이 있습니다.</p>
+</div>
+<!-- Backend -->
+<div class="bg-background rounded-lg p-6 border border-outline-variant card-shadow">
+<h3 class="text-xl text-on-surface mb-4 flex items-center gap-2 border-b border-outline-variant pb-2 font-bold">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">dns</span> Backend
+                    </h3>
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="tech-tag">Java</span>
+<span class="tech-tag">Spring Boot</span>
+<span class="tech-tag">MyBatis</span>
+<span class="tech-tag">REST API</span>
+<span class="tech-tag">Maven</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">비즈니스 로직 설계 및 서버 로직 구현에 집중합니다.</p>
+</div>
+<!-- Database -->
+<div class="bg-background rounded-lg p-6 border border-outline-variant card-shadow">
+<h3 class="text-xl text-on-surface mb-4 flex items-center gap-2 border-b border-outline-variant pb-2 font-bold">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">database</span> Database
+                    </h3>
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="tech-tag">MySQL (WithDay)</span>
+<span class="tech-tag">Oracle</span>
+<span class="tech-tag">SQL Developer (C2C)</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">관계형 데이터베이스 구조 설계 및 데이터 처리를 학습했습니다.</p>
+</div>
+<!-- External API -->
+<div class="bg-background rounded-lg p-6 border border-outline-variant card-shadow">
+<h3 class="text-xl text-on-surface mb-4 flex items-center gap-2 border-b border-outline-variant pb-2 font-bold">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">api</span> External API
+                    </h3>
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="tech-tag">Google OAuth</span>
+<span class="tech-tag">OneSignal</span>
+<span class="tech-tag">Cloudinary</span>
+<span class="tech-tag">Kakao Postcode API</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">외부 서비스 연동을 통한 기능 확장을 구현해 보았습니다.</p>
+</div>
+<!-- Cloud / DevOps -->
+<div class="bg-background rounded-lg p-6 border border-outline-variant card-shadow">
+<h3 class="text-xl text-on-surface mb-4 flex items-center gap-2 border-b border-outline-variant pb-2 font-bold">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">cloud</span> Cloud / DevOps (학습/실습)
+                    </h3>
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="tech-tag">Docker</span>
+<span class="tech-tag">AWS</span>
+<span class="tech-tag">GitHub Actions</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">교육 과정 기반 학습/실습을 진행했습니다.</p>
+</div>
+<!-- Kubernetes -->
+<div class="bg-background rounded-lg p-6 border border-outline-variant card-shadow">
+<h3 class="text-xl text-on-surface mb-4 flex items-center gap-2 border-b border-outline-variant pb-2 font-bold">
+<span class="material-symbols-outlined text-on-surface-variant text-xl">deployed_code</span> Kubernetes (학습/실습)
+                    </h3>
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="tech-tag">Kubernetes</span>
+<span class="tech-tag">Pod</span>
+<span class="tech-tag">Deployment</span>
+<span class="tech-tag">k3s</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">교육 과정 기반 학습/실습을 통해 컨테이너 오케스트레이션 개념을 익혔습니다.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Project Section -->
+<section class="py-section-padding bg-background" id="projects">
+<div class="max-w-max-width mx-auto px-container-padding-mobile md:px-gutter">
+<div class="flex items-center gap-2 mb-12">
+<span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+<h2 class="text-3xl text-on-surface font-bold">Featured Projects</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Project 1 Card -->
+<div class="bg-surface rounded-2xl border border-outline-variant card-shadow overflow-hidden flex flex-col cursor-pointer hover:border-primary transition-colors" onclick="openModal('withday')">
+<div class="bg-surface-variant h-48 border-b border-outline-variant overflow-hidden flex items-center justify-center p-4">
+<img alt="WithDay Map Feature" class="w-full h-full object-cover object-top rounded-t-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7_0Hfx1IlJsEjyMiY3Fh8AHECEYslInl71TglYiqEKAVmPHxErQ97VoridPDspWWWn2-VTKDjjELgxPNu3eNBRCjs74a2bZ6GX3HYJSpbaSKP-jK2Z4HDmbz821NlZTGT2ES61denRzqXU7epPaayEq90DPy4EUMxyuDA058bwaITRHlk3IU-YDK3tcOBgZCz1Aud5m_HML6i_JixupV7u6Mc0ey_J_vaXTb3EJJFmjhDFAVmoPdumlnRTAeT3n5qi_reQghyeRHu"/>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="text-2xl text-on-surface font-bold mb-2">WithDay</h3>
+<p class="text-on-surface-variant mb-4 font-medium">사용자 성향 맞춤형 여행 동행 매칭 및 일정 추천 플랫폼</p>
+<div class="text-sm text-on-surface-variant mb-4 space-y-1">
+<p><strong>기간:</strong> 2026.05.11 ~ 2026.06.09 (1개월)</p>
+<p><strong>역할:</strong> 인증 / 추천 일정 / 관리자 설정 (4인 팀)</p>
+</div>
+<ul class="list-disc list-inside text-sm text-on-surface-variant space-y-1 mb-6">
+<li>Google OAuth 2.0 및 JWT 인증 구현</li>
+<li>여행 일정 추천 알고리즘 구현</li>
+<li>관리자 대시보드 API 개발</li>
+</ul>
+<div class="mt-auto">
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="tech-tag">Java</span>
+<span class="tech-tag">Spring Boot</span>
+<span class="tech-tag">MySQL</span>
+</div>
+<button class="w-full py-2.5 border border-primary text-primary rounded-md text-sm font-medium hover:bg-primary/5 transition-colors">
+                                자세히 보기
+                            </button>
+</div>
+</div>
+</div>
+<!-- Project 2 Card -->
+<div class="bg-surface rounded-2xl border border-outline-variant card-shadow overflow-hidden flex flex-col cursor-pointer hover:border-primary transition-colors" onclick="openModal('c2c')">
+<div class="bg-surface-variant h-48 border-b border-outline-variant overflow-hidden flex items-center justify-center p-4">
+<img alt="AED C2C Map Feature" class="w-full h-full object-cover object-top rounded-t-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPcq4nY5pJk9yJHb2WCr1HAP7yL7xyAg7-wm719fKEopICDV3thqy-FHpSSnKEtFOr7E0SR6iki3oeWhn6-GQOv_s1uObysxQZFc1IpJ9YK7qDN4R5nhql6UT5PzucgsTKI3h9cQ7BFSgB5MAA23ogZBkd5wNWV8Y0AvhXzX-lG0rsiPOv_qXPIhrausooTKY_Wcw7TEoII0_mroxX-DL085Ft-fefaM1yaXbhWmBG12mxnmVR6ctP-WJMrLKb8Ld9hxsS81WWMwZj"/>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<h3 class="text-2xl text-on-surface font-bold mb-2">AED / C2C</h3>
+<p class="text-on-surface-variant mb-4 font-medium">지도 기반 중고거래 및 지역 커뮤니티 플랫폼</p>
+<div class="text-sm text-on-surface-variant mb-4 space-y-1">
+<p><strong>기간:</strong> 2026.03.24 ~ 2026.04.22 (1개월)</p>
+<p><strong>역할:</strong> 팀장 / 회원가입 / 그린리턴 맵 구현 (5인 팀)</p>
+</div>
+<ul class="list-disc list-inside text-sm text-on-surface-variant space-y-1 mb-6">
+<li>Git Flow 기반 협업 및 팀 리딩</li>
+<li>이메일 인증 타이머 포함 회원가입 구현</li>
+<li>카카오맵 API 활용 SIDO_MAP 시각화</li>
+</ul>
+<div class="mt-auto">
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="tech-tag">Java</span>
+<span class="tech-tag">Spring Boot</span>
+<span class="tech-tag">Oracle</span>
+</div>
+<button class="w-full py-2.5 border border-primary text-primary rounded-md text-sm font-medium hover:bg-primary/5 transition-colors">
+                                자세히 보기
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Project Modals Container -->
+<div id="modalContainer"></div>
+<!-- Troubleshooting Section -->
+<section class="py-section-padding bg-surface border-y border-outline-variant" id="troubleshooting">
+<div class="max-w-max-width mx-auto px-container-padding-mobile md:px-gutter">
+<div class="flex items-center gap-2 mb-8">
+<span class="material-symbols-outlined text-primary text-3xl">bug_report</span>
+<h2 class="text-3xl text-on-surface font-bold">Troubleshooting Log</h2>
+</div>
+<div class="flex flex-col md:flex-row gap-8 items-stretch">
+<div class="w-full md:w-1/3">
+<div class="flex gap-2 mb-4 border-b border-outline-variant pb-2">
+<button class="tab-btn px-4 py-2 rounded-t-md font-jetbrains text-sm font-medium transition-colors border border-b-0 border-outline-variant w-1/2 active bg-primary text-on-primary border-primary" data-target="withday">WithDay</button>
+<button class="tab-btn px-4 py-2 rounded-t-md font-jetbrains text-sm font-medium transition-colors border border-b-0 border-outline-variant w-1/2 bg-surface-variant text-on-surface-variant" data-target="c2c">AED / C2C</button>
+</div>
+<div class="space-y-2" id="troubleshooting-list">
+<!-- Items will be populated by JS -->
+</div>
+</div>
+<div class="w-full md:w-2/3 bg-background border border-outline-variant rounded-lg p-6 min-h-[400px] flex flex-col h-full gap-6 card-shadow" id="troubleshooting-detail">
+<!-- Details will be populated by JS -->
+</div>
+</div>
+</div>
+</section>
+<!-- API Specs & Documentation -->
+<section class="py-section-padding bg-background" id="docs">
+<div class="max-w-max-width mx-auto px-container-padding-mobile md:px-gutter">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">menu_book</span>
+<h2 class="text-3xl text-on-surface font-bold">API &amp; Documentation</h2>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+<div class="bg-surface p-6 rounded-lg border border-outline-variant flex flex-col gap-4 h-full card-shadow">
+<h3 class="font-bold text-on-surface text-xl mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">folder</span> WithDay Documentation
+                    </h3>
+<p class="text-sm text-on-surface-variant mb-4">API 흐름, 데이터베이스 구조 등 핵심 산출물입니다.</p>
+<ul class="space-y-3 mb-6 text-sm text-on-surface font-medium">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-primary">check</span> API Map 문서</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-primary">check</span> ERD (엔티티 관계도)</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-primary">check</span> 추천 알고리즘 로직 명세서</li>
+</ul>
+<a class="mt-auto flex items-center justify-center gap-2 bg-primary text-on-primary px-4 py-3 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors shadow-sm" href="https://notion.so" target="_blank">
+                        View WithDay Docs
+                    </a>
+</div>
+<div class="bg-surface p-6 rounded-lg border border-outline-variant flex flex-col gap-4 h-full card-shadow">
+<h3 class="font-bold text-on-surface text-xl mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">folder</span> C2C Documentation
+                    </h3>
+<p class="text-sm text-on-surface-variant mb-4">인증 및 커뮤니티 데이터 구조 관련 산출물입니다.</p>
+<ul class="space-y-3 mb-6 text-sm text-on-surface font-medium">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-primary">check</span> 회원가입/인증 흐름도</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-primary">check</span> ERD 및 데이터베이스 스키마</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-primary">check</span> SIDO_MAP 매핑 로직 문서</li>
+</ul>
+<a class="mt-auto flex items-center justify-center gap-2 bg-primary text-on-primary px-4 py-3 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors shadow-sm" href="https://notion.so" target="_blank">
+                        View C2C Docs
+                    </a>
+</div>
+</div>
+</div>
+</section>
+<!-- About & Contact Section -->
+<section class="py-section-padding bg-surface border-t border-outline-variant" id="about">
+<div class="max-w-max-width mx-auto px-container-padding-mobile md:px-gutter">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<!-- About Me -->
+<div>
+<div class="flex items-center gap-2 mb-8">
+<span class="material-symbols-outlined text-primary text-3xl">person</span>
+<h2 class="text-3xl text-on-surface font-bold">About Me</h2>
+</div>
+<div class="space-y-8">
+<div>
+<h3 class="text-2xl text-on-surface mb-4 font-bold">개발 철학 &amp; 역량</h3>
+<p class="text-lg text-on-surface-variant leading-relaxed">
+                                사용자의 클릭 한 번이 데이터베이스에 안전하게 기록되고, 다시 유용한 정보로 화면에 보여지기까지의 전체 과정을 책임지는 개발자를 지향합니다. 문제를 마주했을 때 단순히 우회하는 것이 아니라, 원인을 분석하고 근본적인 해결책을 문서화하며 성장하는 과정을 즐깁니다.
+                            </p>
+</div>
+<div>
+<h3 class="text-2xl text-on-surface mb-4 font-bold">Education</h3>
+<div class="space-y-4">
+<div class="bg-background p-5 rounded-lg border border-outline-variant card-shadow">
+<h4 class="font-bold text-base text-on-surface">KH정보교육원</h4>
+<p class="text-sm text-on-surface-variant mt-1">AWS 클라우드 기반 풀스택 개발자 과정 수료 (기간 정보)</p>
+</div>
+<div class="bg-background p-5 rounded-lg border border-outline-variant card-shadow">
+<h4 class="font-bold text-base text-on-surface">경기과학기술대학교</h4>
+<p class="text-sm text-on-surface-variant mt-1">인공지능학과 졸업 (기간 정보)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Contact -->
+<div id="contact-info">
+<div class="flex items-center gap-2 mb-8">
+<span class="material-symbols-outlined text-primary text-3xl">connect_without_contact</span>
+<h2 class="text-3xl text-on-surface font-bold">Contact</h2>
+</div>
+<div class="bg-background border border-outline-variant rounded-xl p-8 card-shadow">
+<p class="text-on-surface-variant mb-6 text-base leading-relaxed">새로운 기회와 도전을 기다리고 있습니다. 이메일이나 아래 링크를 통해 편하게 연락주세요.</p>
+<div class="flex flex-col gap-4">
+<a class="flex items-center gap-3 bg-surface border border-outline-variant px-6 py-5 rounded-lg hover:border-primary hover:bg-primary/5 transition-all text-base font-medium text-on-surface shadow-sm" href="mailto:[이메일 입력 필요]">
+<span class="material-symbols-outlined text-primary">mail</span> [이메일 입력 필요]
+                            </a>
+<a class="flex items-center gap-3 bg-surface border border-outline-variant px-6 py-5 rounded-lg hover:border-primary hover:bg-primary/5 transition-all text-base font-medium text-on-surface shadow-sm" href="https://docs.google.com/document/d/1_YOUR_RESUME_LINK/edit?usp=sharing" target="_blank">
+<span class="material-symbols-outlined text-primary">description</span> 이력서 (Google Docs)
+                            </a>
+<a class="flex items-center gap-3 bg-surface border border-outline-variant px-6 py-5 rounded-lg hover:border-primary hover:bg-primary/5 transition-all text-base font-medium text-on-surface shadow-sm" href="https://notion.so" target="_blank">
+<span class="material-symbols-outlined text-primary">folder</span> 포트폴리오 노션 (프로젝트 상세)
+                            </a>
+<a aria-disabled="true" class="flex items-center gap-3 bg-surface border border-outline-variant px-6 py-5 rounded-lg text-base font-medium text-on-surface-variant opacity-50 cursor-not-allowed shadow-sm" href="#" onclick="event.preventDefault();">
+<svg aria-hidden="true" class="w-5 h-5 text-on-surface-variant" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path></svg>
+                                GitHub (준비 중)
+                            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-variant w-full py-8 border-t border-outline-variant" id="footer">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-max-width mx-auto px-gutter gap-4">
+<div class="text-lg font-bold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-primary">terminal</span> Youngmin.dev
+            </div>
+<div class="font-jetbrains text-xs text-on-surface-variant">© 2026 Lee Youngmin. Full-stack Developer Portfolio.</div>
+</div>
+</footer>
+</main>
+<script>
+    // Project Data for Modals
+    const PROJECTS_DATA = {
+        'withday': {
+            title: 'WithDay — 여행 동행 매칭 플랫폼',
+            period: '2026.05.11 ~ 2026.06.09 (1개월) | 4인 팀',
+            role: '인증 / 추천 일정 / 관리자 설정 담당',
+            techStack: ['Java', 'Spring Boot', 'MySQL'],
+            features: [
+                '회원가입 및 자체 로그인 구현',
+                'Google OAuth 2.0 기반 소셜 로그인 및 JWT 인증 구현',
+                '비밀번호 및 계정 찾기 기능',
+                '사용자 성향 기반 여행 일정 추천 알고리즘 설계 및 구현',
+                '관리자 대시보드 및 서비스 설정 관리 API 개발'
+            ],
+            image: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            docsLink: 'https://notion.so'
+        },
+        'c2c': {
+            title: 'AED / C2C — 중고거래·커뮤니티 플랫폼',
+            period: '2026.03.24 ~ 2026.04.22 (1개월) | 5인 팀',
+            role: '팀장 / 회원가입 및 인증 / 그린리턴 맵 구현',
+            techStack: ['Java', 'Spring Boot', 'Oracle', 'SQL Developer'],
+            features: [
+                '팀장으로서 Git Flow 기반 버전 관리 및 역할 분담 주도',
+                '이메일 인증 타이머를 포함한 회원가입 프로세스 구현',
+                '회원 정보 조회 및 수정 등 기본 회원 기능 구현',
+                '플랫폼 메인 페이지 레이아웃 및 데이터 연동',
+                '게시글에 대한 댓글 작성, 수정, 삭제 기능',
+                '카카오맵 API를 활용한 그린리턴 맵(SIDO_MAP) 데이터 정제 및 시각화'
+            ],
+            image: 'https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+            docsLink: 'https://notion.so'
+        }
+    };
+
+    // Modal Logic
+    function openModal(projectId) {
+        const data = PROJECTS_DATA[projectId];
+        if (!data) return;
+
+        const modalHtml = `
+            <div id="projectModal" class="modal show">
+                <div class="modal-content flex flex-col md:flex-row">
+                    <div class="w-full md:w-1/2 h-64 md:h-auto">
+                        <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none">
+                    </div>
+                    <div class="w-full md:w-1/2 p-8 flex flex-col relative bg-surface md:rounded-r-2xl">
+                        <span class="close-btn material-symbols-outlined absolute top-4 right-4" onclick="closeModal()">close</span>
+                        
+                        <h3 class="text-2xl font-bold text-on-surface mb-2 mt-4">${data.title}</h3>
+                        <p class="text-sm text-on-surface-variant font-medium mb-6">${data.period}</p>
+                        
+                        <div class="mb-6 bg-surface-variant/50 p-4 rounded-lg border-l-4 border-primary">
+                            <h4 class="font-bold text-primary mb-2 flex items-center gap-2"><span class="material-symbols-outlined text-sm">person</span> Role</h4>
+                            <p class="text-sm text-on-surface-variant font-bold">${data.role}</p>
+                        </div>
+                        
+                        <div class="mb-6 flex-1">
+                            <h4 class="font-bold text-on-surface mb-3 flex items-center gap-2"><span class="material-symbols-outlined text-sm">list</span> 상세 기능</h4>
+                            <ul class="list-disc list-inside text-sm text-on-surface-variant space-y-2">
+                                ${data.features.map(f => `<li>${f}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-bold text-on-surface mb-3 flex items-center gap-2"><span class="material-symbols-outlined text-sm">build</span> Tech Stack</h4>
+                            <div class="flex flex-wrap gap-2">
+                                ${data.techStack.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4 mt-auto">
+                            <a href="${data.docsLink}" target="_blank" class="flex-1 flex justify-center items-center gap-2 bg-primary text-on-primary py-2.5 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors">
+                                <span class="material-symbols-outlined text-sm">description</span> 프로젝트 문서
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.getElementById('modalContainer').innerHTML = modalHtml;
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    function closeModal() {
+        document.getElementById('modalContainer').innerHTML = '';
+        document.body.style.overflow = '';
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('projectModal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if (window.scrollY > 10) {
+            nav.classList.add('nav-scrolled', 'shadow-sm');
+        } else {
+            nav.classList.remove('nav-scrolled', 'shadow-sm');
+        }
+    });
+
+    const TROUBLESHOOTING_DATA = [
+        {
+            id: 'wd-1',
+            project: 'withday',
+            title: 'JWT Token 만료 시 무한 401 오류',
+            problem: 'Access Token 만료 시 클라이언트에서 지속적으로 401 에러가 발생하여 사용자 경험 저하',
+            cause: 'Refresh Token을 활용한 재발급 로직이 클라이언트의 Interceptor에 완벽히 구현되지 않음',
+            solution: ['Axios Interceptor 401 에러 핸들링 추가', 'Refresh Token으로 새 Access Token 발급 로직 구현', '실패했던 기존 요청들을 큐에 담았다가 재요청 처리'],
+            result: 'Token 만료 시에도 사용자가 인지하지 못하게 매끄러운 인증 연장 성공',
+            lesson: '클라이언트와 서버 간의 인증 토큰 흐름을 정확히 이해하고 예외 상황을 처리하는 방법 숙지'
+        },
+        {
+            id: 'wd-2',
+            project: 'withday',
+            title: '추천 일정 API N+1 쿼리 성능 저하',
+            problem: '사용자 수가 증가함에 따라 여행 일정 추천 API의 응답 속도가 현저히 느려짐 (약 3초 소요)',
+            cause: '데이터베이스 쿼리 내에서 불필요한 Full Table Scan이 발생하고 조인(Join) 시 N+1 문제 발생',
+            solution: ['자주 검색되는 조건(태그, 날짜)에 복합 인덱스 추가', '연관 엔티티 조회를 위한 Fetch Join 적용', '페이징 쿼리 최적화'],
+            result: 'API 응답 속도를 평균 0.3초 이내로 개선 (기존 대비 약 10배 향상)',
+            lesson: '데이터베이스 인덱스 설계의 중요성과 JPA 사용 시 N+1 문제 해결 방안 체득'
+        },
+        {
+            id: 'wd-3',
+            project: 'withday',
+            title: '소셜 회원가입 접근 오류 및 정보 누락',
+            problem: '일부 구글 계정으로 로그인 시 프로필 이미지가 제대로 표시되지 않거나 이메일 정보가 누락됨',
+            cause: '구글 API 응답 형식이 변경되었거나, 사용자가 이메일 제공을 거부한 경우에 대한 예외 처리 미흡',
+            solution: ['OAuth 응답 파싱 로직 개선', '필수 데이터 누락 시 기본값 제공 처리 추가', '추가 정보 입력 폼으로 유도하는 플로우 추가'],
+            result: '다양한 구글 계정 환경에서도 안정적인 로그인 및 회원가입 프로세스 확립',
+            lesson: '외부 API 연동 시 응답 데이터의 다양성과 예외 케이스 처리의 중요성 인식'
+        },
+        {
+            id: 'wd-4',
+            project: 'withday',
+            title: '관리자 페이지 대용량 데이터 로딩 멈춤',
+            problem: '관리자 페이지에서 전체 사용자 목록을 조회할 때 브라우저 렌더링이 멈추는 현상 발생',
+            cause: '페이지네이션 없이 수천 건의 데이터를 한 번에 클라이언트로 전송하고 렌더링 시도',
+            solution: ['서버 사이드 페이지네이션(Offset 기반) 적용', '한 페이지당 50건씩만 데이터를 조회하도록 변경', '프론트엔드 가상 스크롤(Virtual Scroll) 도입 검토'],
+            result: '초기 로딩 속도 단축 및 브라우저 성능 안정화 확보',
+            lesson: '대용량 데이터 처리 시 프론트엔드와 백엔드의 적절한 역할 분담 및 최적화 기법 학습'
+        },
+        {
+            id: 'c2c-1',
+            project: 'c2c',
+            title: '그린리턴 맵 SIDO_MAP 데이터 파싱 오류',
+            problem: '카카오맵에 폴리곤을 그리기 위한 SIDO_MAP GeoJSON 데이터 파싱 중 메모리 초과 에러 발생',
+            cause: '원본 데이터 크기가 너무 커서 클라이언트 단에서 한 번에 파싱하기에 무리가 있음',
+            solution: ['백엔드에서 데이터 단순화(Simplification) 알고리즘 적용 후 전송', '지역별로 데이터를 분할하여 레이지 로딩 적용'],
+            result: '지도 로딩 속도 개선 및 메모리 초과 에러 해결',
+            lesson: '대용량 공간 데이터 처리 시 클라이언트와 서버 간의 적절한 데이터 가공 및 분배 전략 필요성 이해'
+        },
+        {
+            id: 'c2c-2',
+            project: 'c2c',
+            title: '이메일 인증 타이머 동기화 실패',
+            problem: '사용자가 페이지를 새로고침하면 이메일 인증 타이머가 초기화되어 인증 진행이 불가함',
+            cause: '타이머 상태를 클라이언트 메모리에만 저장하여 새로고침 시 소실됨',
+            solution: ['인증 시작 시각을 서버에 기록하고 클라이언트에 전달', '클라이언트에서는 서버 시각을 기준으로 남은 시간 계산'],
+            result: '새로고침 시에도 정확한 남은 시간 표시 및 인증 프로세스 유지',
+            lesson: '중요한 상태 정보는 서버를 기준으로 관리해야 함을 인식'
+        }
+    ];
+
+    let currentProjectFilter = 'withday';
+    let currentSelectedId = 'wd-3';
+
+    function renderTroubleshootingList() {
+        const listContainer = document.getElementById('troubleshooting-list');
+        const filteredData = TROUBLESHOOTING_DATA.filter(item => item.project === currentProjectFilter);
+        
+        // If current selected item is not in filtered list, select the first one
+        if (!filteredData.find(item => item.id === currentSelectedId) && filteredData.length > 0) {
+            currentSelectedId = filteredData[0].id;
+        }
+
+        listContainer.innerHTML = filteredData.map(item => `
+            <button class="w-full text-left px-4 py-3 rounded-md font-medium text-sm transition-colors border card-shadow ${item.id === currentSelectedId ? 'bg-primary/10 border-primary text-primary' : 'bg-surface border-outline-variant text-on-surface-variant hover:bg-surface-variant'}" 
+                onclick="selectTroubleshooting('${item.id}')">
+                ${item.title}
+            </button>
+        `).join('');
+
+        renderTroubleshootingDetail();
+    }
+
+    function renderTroubleshootingDetail() {
+        const detailContainer = document.getElementById('troubleshooting-detail');
+        const item = TROUBLESHOOTING_DATA.find(i => i.id === currentSelectedId);
+
+        if (!item) return;
+
+        detailContainer.innerHTML = `
+            <h3 class="text-2xl font-bold text-on-surface mb-4 border-b border-outline-variant pb-4">${item.title}</h3>
+            <div class="space-y-5">
+                <div class="bg-surface rounded-lg p-4 border border-outline-variant">
+                    <h4 class="font-jetbrains text-sm font-bold text-red-600 mb-2 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">error</span> Problem
+                    </h4>
+                    <p class="text-sm text-on-surface-variant">${item.problem}</p>
+                </div>
+                <div class="bg-surface rounded-lg p-4 border border-outline-variant">
+                    <h4 class="font-jetbrains text-sm font-bold text-orange-600 mb-2 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">search</span> Cause
+                    </h4>
+                    <p class="text-sm text-on-surface-variant">${item.cause}</p>
+                </div>
+                <div class="bg-surface rounded-lg p-4 border border-outline-variant">
+                    <h4 class="font-jetbrains text-sm font-bold text-green-600 mb-3 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">build</span> Solution
+                    </h4>
+                    <ul class="list-none space-y-2">
+                        ${item.solution.map(sol => `
+                            <li class="flex items-start gap-2 text-sm text-on-surface-variant">
+                                <span class="material-symbols-outlined text-green-600 text-sm mt-0.5">check_box</span>
+                                <span>${sol}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-4">
+                    <div class="bg-primary/5 rounded-lg p-4 border border-primary/20">
+                        <h4 class="font-jetbrains text-sm font-bold text-primary mb-2 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">check_circle</span> Result
+                        </h4>
+                        <p class="text-sm text-on-surface-variant font-medium text-primary">${item.result}</p>
+                    </div>
+                    <div class="bg-surface rounded-lg p-4 border border-outline-variant">
+                        <h4 class="font-jetbrains text-sm font-bold text-purple-600 mb-2 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">lightbulb</span> Lesson Learned
+                        </h4>
+                        <p class="text-sm text-on-surface-variant">${item.lesson}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    window.selectTroubleshooting = function(id) {
+        currentSelectedId = id;
+        renderTroubleshootingList();
+    };
+
+    // Tab handling
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            // Update active state of buttons
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('active', 'bg-primary', 'text-on-primary', 'border-primary');
+                b.classList.add('bg-surface-variant', 'text-on-surface-variant');
+            });
+            
+            const targetBtn = e.target;
+            targetBtn.classList.remove('bg-surface-variant', 'text-on-surface-variant');
+            targetBtn.classList.add('active', 'bg-primary', 'text-on-primary', 'border-primary');
+            
+            // Update data
+            currentProjectFilter = targetBtn.dataset.target;
+            renderTroubleshootingList();
+        });
+    });
+
+    // Initialize list
+    renderTroubleshootingList();
+</script>
+</body></html>

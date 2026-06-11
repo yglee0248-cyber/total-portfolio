@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youngmin.dev - 신입 백엔드 개발자 포트폴리오</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header" id="navbar">
+    <nav class="nav-container" aria-label="주요 메뉴">
+      <a class="brand" href="#home" aria-label="홈으로 이동">
+        <span class="material-symbols-outlined" aria-hidden="true">terminal</span>
+        <span>Youngmin.dev</span>
+      </a>
+
+      <div class="nav-menu" id="nav-menu">
+        <a class="nav-link" href="#tech-stack">Tech Stack</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#troubleshooting">Troubleshooting</a>
+        <a class="nav-link" href="#docs">Docs</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-resume mobile-only" href="https://docs.google.com/document/d/1_YOUR_RESUME_LINK/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+          <span class="material-symbols-outlined" aria-hidden="true">download</span>
+          이력서 (Docs)
+        </a>
+      </div>
+
+      <div class="nav-actions">
+        <a class="nav-resume desktop-only" href="https://docs.google.com/document/d/1_YOUR_RESUME_LINK/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+          <span class="material-symbols-outlined" aria-hidden="true">download</span>
+          이력서 (Docs)
+        </a>
+        <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="nav-menu">
+          <span class="material-symbols-outlined menu-open-icon" aria-hidden="true">menu</span>
+          <span class="material-symbols-outlined menu-close-icon" aria-hidden="true">close</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-offset" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="status-badge">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            Status: Backend Developer (Ready for hire)
+          </p>
+          <h1>화면부터 API, 데이터 흐름까지 연결해 구현하는<br> 신입 개발자 <span>이영민</span>입니다.</h1>
+          <p class="hero-description">
+            React와 Spring Boot 기반의 풀스택 구현 경험을 바탕으로, 사용자 화면부터 데이터베이스까지 이어지는 서비스의 전체 흐름을 이해하고 구현하는 데 집중합니다.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">
+              <span class="material-symbols-outlined" aria-hidden="true">code</span>
+              주요 프로젝트 보기
+            </a>
+            <a class="btn btn-outline is-disabled" href="#" aria-disabled="true">
+              <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.72-2.78.62-3.37-1.37-3.37-1.37-.45-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.04 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05A9.28 9.28 0 0 1 12 6.98c.85 0 1.7.12 2.5.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.71 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.59.69.49A10.17 10.17 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/>
+              </svg>
+              GitHub (준비 중)
+            </a>
+          </div>
+          <div class="hero-tags" aria-label="핵심 키워드">
+            <span class="tech-tag">Full-stack Flow</span>
+            <span class="tech-tag">Backend Focus</span>
+            <span class="tech-tag">Team Project</span>
+            <span class="tech-tag">Documentation</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="서비스 아키텍처 다이어그램">
+          <div class="mockup-window">
+            <div class="mockup-header">
+              <span class="mockup-dot red"></span>
+              <span class="mockup-dot yellow"></span>
+              <span class="mockup-dot green"></span>
+              <span class="mockup-title">architecture-diagram.css</span>
+            </div>
+            <div class="diagram">
+              <div class="diagram-node client">Client</div>
+              <div class="diagram-line line-client"></div>
+              <div class="diagram-node balancer">Load Balancer</div>
+              <div class="diagram-line line-servers"></div>
+              <div class="diagram-line line-server-a"></div>
+              <div class="diagram-line line-server-b"></div>
+              <div class="diagram-node server server-a">Server A</div>
+              <div class="diagram-node server server-b">Server B</div>
+              <div class="diagram-line line-db-a"></div>
+              <div class="diagram-line line-db-b"></div>
+              <div class="diagram-line line-db-join"></div>
+              <div class="diagram-line line-db-down"></div>
+              <div class="diagram-node database">
+                <span class="material-symbols-outlined" aria-hidden="true">database</span>
+                <span>MySQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="tech-stack">
+      <div class="container">
+        <div class="section-title">
+          <span class="material-symbols-outlined" aria-hidden="true">layers</span>
+          <h2>Tech Stack</h2>
+        </div>
+        <div class="tech-grid">
+          <article class="info-card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">web</span>Frontend</h3>
+            <div class="tag-row">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Vite</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">MUI</span>
+            </div>
+            <p>사용자 화면 구현 및 REST API 연동 경험이 있습니다.</p>
+          </article>
+
+          <article class="info-card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">dns</span>Backend</h3>
+            <div class="tag-row">
+              <span class="tech-tag">Java</span>
+              <span class="tech-tag">Spring Boot</span>
+              <span class="tech-tag">MyBatis</span>
+              <span class="tech-tag">REST API</span>
+              <span class="tech-tag">Maven</span>
+            </div>
+            <p>비즈니스 로직 설계 및 서버 로직 구현에 집중합니다.</p>
+          </article>
+
+          <article class="info-card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">database</span>Database</h3>
+            <div class="tag-row">
+              <span class="tech-tag">MySQL (WithDay)</span>
+              <span class="tech-tag">Oracle</span>
+              <span class="tech-tag">SQL Developer (C2C)</span>
+            </div>
+            <p>관계형 데이터베이스 구조 설계 및 데이터 처리를 학습했습니다.</p>
+          </article>
+
+          <article class="info-card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">api</span>External API</h3>
+            <div class="tag-row">
+              <span class="tech-tag">Google OAuth</span>
+              <span class="tech-tag">OneSignal</span>
+              <span class="tech-tag">Cloudinary</span>
+              <span class="tech-tag">Kakao Postcode API</span>
+            </div>
+            <p>외부 서비스 연동을 통한 기능 확장을 구현해 보았습니다.</p>
+          </article>
+
+          <article class="info-card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">cloud</span>Cloud / DevOps (학습/실습)</h3>
+            <div class="tag-row">
+              <span class="tech-tag">Docker</span>
+              <span class="tech-tag">AWS</span>
+              <span class="tech-tag">GitHub Actions</span>
+            </div>
+            <p>교육 과정 기반 학습/실습을 진행했습니다.</p>
+          </article>
+
+          <article class="info-card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">deployed_code</span>Kubernetes (학습/실습)</h3>
+            <div class="tag-row">
+              <span class="tech-tag">Kubernetes</span>
+              <span class="tech-tag">Pod</span>
+              <span class="tech-tag">Deployment</span>
+              <span class="tech-tag">k3s</span>
+            </div>
+            <p>교육 과정 기반 학습/실습을 통해 컨테이너 오케스트레이션 개념을 익혔습니다.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-title">
+          <span class="material-symbols-outlined" aria-hidden="true">rocket_launch</span>
+          <h2>Featured Projects</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card" data-project-card="withday">
+            <div class="project-visual withday-visual" role="img" aria-label="WithDay 프로젝트 미리보기"></div>
+            <div class="project-body">
+              <h3>WithDay</h3>
+              <p class="project-summary">사용자 성향 맞춤형 여행 동행 매칭 및 일정 추천 플랫폼</p>
+              <div class="project-meta">
+                <p><strong>기간:</strong> 2026.05.11 ~ 2026.06.09 (1개월)</p>
+                <p><strong>역할:</strong> 인증 / 추천 일정 / 관리자 설정 (4인 팀)</p>
+              </div>
+              <ul class="project-list">
+                <li>Google OAuth 2.0 및 JWT 인증 구현</li>
+                <li>여행 일정 추천 알고리즘 구현</li>
+                <li>관리자 대시보드 API 개발</li>
+              </ul>
+              <div class="project-footer">
+                <div class="tag-row">
+                  <span class="tech-tag">Java</span>
+                  <span class="tech-tag">Spring Boot</span>
+                  <span class="tech-tag">MySQL</span>
+                </div>
+                <button class="detail-btn" type="button" data-project="withday">자세히 보기</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-project-card="c2c">
+            <div class="project-visual c2c-visual" role="img" aria-label="AED C2C 프로젝트 미리보기"></div>
+            <div class="project-body">
+              <h3>AED / C2C</h3>
+              <p class="project-summary">지도 기반 중고거래 및 지역 커뮤니티 플랫폼</p>
+              <div class="project-meta">
+                <p><strong>기간:</strong> 2026.03.24 ~ 2026.04.22 (1개월)</p>
+                <p><strong>역할:</strong> 팀장 / 회원가입 / 그린리턴 맵 구현 (5인 팀)</p>
+              </div>
+              <ul class="project-list">
+                <li>Git Flow 기반 협업 및 팀 리딩</li>
+                <li>이메일 인증 타이머 포함 회원가입 구현</li>
+                <li>카카오맵 API 활용 SIDO_MAP 시각화</li>
+              </ul>
+              <div class="project-footer">
+                <div class="tag-row">
+                  <span class="tech-tag">Java</span>
+                  <span class="tech-tag">Spring Boot</span>
+                  <span class="tech-tag">Oracle</span>
+                </div>
+                <button class="detail-btn" type="button" data-project="c2c">자세히 보기</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="troubleshooting">
+      <div class="container">
+        <div class="section-title">
+          <span class="material-symbols-outlined" aria-hidden="true">bug_report</span>
+          <h2>Troubleshooting Log</h2>
+        </div>
+        <div class="trouble-layout">
+          <aside class="trouble-sidebar" aria-label="트러블슈팅 목록">
+            <div class="tab-list" role="tablist" aria-label="프로젝트 선택">
+              <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-target="withday">WithDay</button>
+              <button class="tab-btn" type="button" role="tab" aria-selected="false" data-target="c2c">AED / C2C</button>
+            </div>
+            <div class="trouble-list" id="trouble-list"></div>
+          </aside>
+          <article class="trouble-detail" id="trouble-detail" aria-live="polite"></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="docs">
+      <div class="container">
+        <div class="section-title">
+          <span class="material-symbols-outlined" aria-hidden="true">menu_book</span>
+          <h2>API &amp; Documentation</h2>
+        </div>
+        <div class="docs-grid">
+          <article class="doc-card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">folder</span>WithDay Documentation</h3>
+            <p>API 흐름, 데이터베이스 구조 등 핵심 산출물입니다.</p>
+            <ul class="check-list">
+              <li><span class="material-symbols-outlined" aria-hidden="true">check</span>API Map 문서</li>
+              <li><span class="material-symbols-outlined" aria-hidden="true">check</span>ERD (엔티티 관계도)</li>
+              <li><span class="material-symbols-outlined" aria-hidden="true">check</span>추천 알고리즘 로직 명세서</li>
+            </ul>
+            <a class="doc-link" href="https://notion.so" target="_blank" rel="noopener noreferrer">View WithDay Docs</a>
+          </article>
+
+          <article class="doc-card">
+            <h3><span class="material-symbols-outlined" aria-hidden="true">folder</span>C2C Documentation</h3>
+            <p>인증 및 커뮤니티 데이터 구조 관련 산출물입니다.</p>
+            <ul class="check-list">
+              <li><span class="material-symbols-outlined" aria-hidden="true">check</span>회원가입/인증 흐름도</li>
+              <li><span class="material-symbols-outlined" aria-hidden="true">check</span>ERD 및 데이터베이스 스키마</li>
+              <li><span class="material-symbols-outlined" aria-hidden="true">check</span>SIDO_MAP 매핑 로직 문서</li>
+            </ul>
+            <a class="doc-link" href="https://notion.so" target="_blank" rel="noopener noreferrer">View C2C Docs</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted about-section" id="about">
+      <div class="container about-grid">
+        <div>
+          <div class="section-title">
+            <span class="material-symbols-outlined" aria-hidden="true">person</span>
+            <h2>About Me</h2>
+          </div>
+          <div class="about-stack">
+            <div>
+              <h3>개발 철학 &amp; 역량</h3>
+              <p>
+                사용자의 클릭 한 번이 데이터베이스에 안전하게 기록되고, 다시 유용한 정보로 화면에 보여지기까지의 전체 과정을 책임지는 개발자를 지향합니다. 문제를 마주했을 때 단순히 우회하는 것이 아니라, 원인을 분석하고 근본적인 해결책을 문서화하며 성장하는 과정을 즐깁니다.
+              </p>
+            </div>
+            <div>
+              <h3>Education</h3>
+              <div class="education-list">
+                <article class="education-card">
+                  <h4>KH정보교육원</h4>
+                  <p>AWS 클라우드 기반 풀스택 개발자 과정 수료 (기간 정보)</p>
+                </article>
+                <article class="education-card">
+                  <h4>경기과학기술대학교</h4>
+                  <p>인공지능학과 졸업 (기간 정보)</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-title">
+            <span class="material-symbols-outlined" aria-hidden="true">connect_without_contact</span>
+            <h2>Contact</h2>
+          </div>
+          <div class="contact-card">
+            <p>새로운 기회와 도전을 기다리고 있습니다. 이메일이나 아래 링크를 통해 편하게 연락주세요.</p>
+            <div class="contact-links">
+              <a href="mailto:[이메일 입력 필요]">
+                <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+                [이메일 입력 필요]
+              </a>
+              <a href="https://docs.google.com/document/d/1_YOUR_RESUME_LINK/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+                <span class="material-symbols-outlined" aria-hidden="true">description</span>
+                이력서 (Google Docs)
+              </a>
+              <a href="https://notion.so" target="_blank" rel="noopener noreferrer">
+                <span class="material-symbols-outlined" aria-hidden="true">folder</span>
+                포트폴리오 노션 (프로젝트 상세)
+              </a>
+              <a class="disabled-link" href="#" aria-disabled="true">
+                <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                  <path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.88-.01-1.72-2.78.62-3.37-1.37-3.37-1.37-.45-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.04 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05A9.28 9.28 0 0 1 12 6.98c.85 0 1.7.12 2.5.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.71 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.59.69.49A10.17 10.17 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/>
+                </svg>
+                GitHub (준비 중)
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="material-symbols-outlined" aria-hidden="true">terminal</span>
+        Youngmin.dev
+      </div>
+      <p>© 2026 Lee Youngmin. Full-stack Developer Portfolio.</p>
+    </div>
+  </footer>
+
+  <div id="modal-container"></div>
+  <script src="script.js"></script>
+</body>
+</html>
