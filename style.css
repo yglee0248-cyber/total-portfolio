@@ -207,15 +207,6 @@ svg {
   transform: translateY(-1px);
 }
 
-.nav-github {
-  border: 1px solid var(--primary);
-  background: var(--surface-container-lowest);
-  color: var(--primary);
-}
-
-.nav-github:hover {
-  background: rgba(106, 81, 136, 0.08);
-}
 
 .mobile-only,
 .menu-toggle {
