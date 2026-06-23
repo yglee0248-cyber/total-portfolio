@@ -196,7 +196,7 @@ const PROJECTS = {
     links: [
       {
         label: "GitHub",
-        href: "https://github.com/yglee0248-cyber/react_semi",
+        href: "https://github.com/yglee0248-cyber/C2C",
       },
       {
         label: "Feature Spec",
