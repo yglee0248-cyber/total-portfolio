@@ -714,6 +714,35 @@ main {
   transform: translateY(-3px);
 }
 
+.project-card--withday,
+.project-theme--withday {
+  --project-primary: #0f2a5f;
+  --project-secondary: #1aa6a6;
+  --project-soft: #f4f8ff;
+  --project-border: #cfe0ff;
+  --project-shadow: rgba(15, 42, 95, 0.12);
+}
+
+.project-card--c2c,
+.project-theme--c2c {
+  --project-primary: #3f8f45;
+  --project-secondary: #7fbe63;
+  --project-soft: #f4fbf5;
+  --project-border: #d7efd8;
+  --project-shadow: rgba(63, 143, 69, 0.12);
+}
+
+.project-card--withday,
+.project-card--c2c {
+  border-color: var(--project-border);
+}
+
+.project-card--withday:hover,
+.project-card--c2c:hover {
+  border-color: var(--project-secondary);
+  box-shadow: var(--shadow-hover), 0 16px 34px var(--project-shadow);
+}
+
 .project-visual {
   position: relative;
   height: 180px;
@@ -813,6 +842,13 @@ main {
   object-position: center top;
 }
 
+.project-card--withday .project-card-image,
+.project-card--c2c .project-card-image {
+  border-color: var(--project-border);
+  border-bottom: 3px solid var(--project-secondary);
+  background: var(--project-soft);
+}
+
 .project-modal-image {
   display: flex;
   align-items: center;
@@ -824,6 +860,19 @@ main {
   object-fit: contain;
   border-radius: 8px;
   background: var(--surface-container-lowest);
+}
+
+.project-theme--withday .project-modal-image,
+.project-theme--c2c .project-modal-image {
+  border-color: var(--project-border);
+  background: var(--project-soft);
+  box-shadow: inset -1px 0 0 var(--project-border);
+}
+
+.project-theme--withday .project-modal-image img,
+.project-theme--c2c .project-modal-image img {
+  border: 1px solid var(--project-border);
+  box-shadow: 0 12px 28px var(--project-shadow);
 }
 
 .project-body {
@@ -882,6 +931,19 @@ main {
 
 .detail-btn:hover {
   background: rgba(106, 81, 136, 0.08);
+}
+
+.project-card--withday .detail-btn,
+.project-card--c2c .detail-btn {
+  border-color: var(--project-border);
+  color: var(--project-primary);
+}
+
+.project-card--withday .detail-btn:hover,
+.project-card--c2c .detail-btn:hover {
+  border-color: var(--project-secondary);
+  background: var(--project-soft);
+  color: var(--project-primary);
 }
 
 .detail-btn.compact {
@@ -1635,6 +1697,68 @@ main {
 
 .modal-link.is-disabled small {
   color: var(--outline);
+}
+
+.project-theme--withday .modal-kicker,
+.project-theme--c2c .modal-kicker {
+  color: var(--project-secondary);
+}
+
+.project-theme--withday .modal-meta-item,
+.project-theme--c2c .modal-meta-item {
+  border-color: var(--project-border);
+  background: var(--project-soft);
+}
+
+.project-theme--withday .modal-meta-item span,
+.project-theme--c2c .modal-meta-item span {
+  color: var(--project-primary);
+}
+
+.project-theme--withday .modal-section h4,
+.project-theme--c2c .modal-section h4 {
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--project-border);
+}
+
+.project-theme--withday .modal-section h4 .material-symbols-outlined,
+.project-theme--c2c .modal-section h4 .material-symbols-outlined,
+.project-theme--withday .modal-list li::before,
+.project-theme--withday .modal-list-grid li::before,
+.project-theme--c2c .modal-list li::before,
+.project-theme--c2c .modal-list-grid li::before {
+  color: var(--project-secondary);
+}
+
+.project-theme--withday .modal-trouble-card,
+.project-theme--c2c .modal-trouble-card {
+  border-left: 3px solid var(--project-secondary);
+}
+
+.project-theme--withday .trouble-row strong,
+.project-theme--c2c .trouble-row strong {
+  color: var(--project-primary);
+}
+
+.project-theme--withday .modal-link:not(.is-disabled),
+.project-theme--c2c .modal-link:not(.is-disabled) {
+  border-color: var(--project-border);
+  background: var(--project-soft);
+  color: var(--project-primary);
+}
+
+.project-theme--withday .modal-link:not(.is-disabled):first-child,
+.project-theme--c2c .modal-link:not(.is-disabled):first-child {
+  border-color: var(--project-primary);
+  background: var(--project-primary);
+  color: #ffffff;
+}
+
+.project-theme--withday .modal-link:not(.is-disabled):hover,
+.project-theme--c2c .modal-link:not(.is-disabled):hover {
+  border-color: var(--project-secondary);
+  background: var(--project-secondary);
+  color: #ffffff;
 }
 
 @media (max-width: 1024px) {

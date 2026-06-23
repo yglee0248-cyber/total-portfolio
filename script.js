@@ -8,6 +8,7 @@ const PROJECTS = {
     team: "4인 팀",
     role: "회원/인증, 추천 일정, 관리자 설정 담당",
     visualClass: "withday-visual",
+    themeClass: "project-theme--withday",
     cardImage: "assets/projects/withday-featured-home.png",
     modalImage: "assets/projects/withday-modal-detail.png",
     cardImageAlt: "WithDay 서비스 홈 화면",
@@ -137,6 +138,7 @@ const PROJECTS = {
     team: "5인 팀",
     role: "팀장, 인증, 댓글, 그린리턴 맵 담당",
     visualClass: "c2c-visual",
+    themeClass: "project-theme--c2c",
     cardImage: "assets/projects/c2c-featured-main.png",
     modalImage: "assets/projects/c2c-modal-detail.png",
     cardImageAlt: "AED / C2C 서비스 메인 화면",
@@ -375,7 +377,7 @@ function openModal(projectId) {
 
   modalContainer.innerHTML = `
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
-      <div class="modal-content project-modal-content">
+      <div class="modal-content project-modal-content ${project.themeClass}">
         <div class="modal-visual project-visual project-modal-image ${project.visualClass}">
           <img src="${project.modalImage}" alt="${project.modalImageAlt}" loading="lazy" />
         </div>
