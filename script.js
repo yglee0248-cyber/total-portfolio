@@ -9,14 +9,14 @@ const PROJECTS = {
     role: "회원/인증, 추천 일정, 관리자 설정 담당",
     visualClass: "withday-visual",
     techStack: [
-      "React",
-      "Vite",
-      "JavaScript",
       "Java",
       "Spring Boot",
       "MyBatis",
       "REST API",
       "MySQL",
+      "React",
+      "Vite",
+      "JavaScript",
       "Google OAuth",
       "JWT",
       "Cloudinary",
@@ -112,7 +112,7 @@ const PROJECTS = {
       },
       {
         label: "Feature Spec",
-        href: "https://drive.google.com/file/d/1kywr4U7Fl2Bc_jxUNsGPR82qysmVuIM9/view?usp=sharing",
+        href: "https://docs.google.com/spreadsheets/d/1gHZzTnMbfF4JPdEuKA3et183TiX5Hg-GC99oTOoOmgc/edit?usp=sharing",
       },
       {
         label: "Presentation",
@@ -141,7 +141,9 @@ const PROJECTS = {
       "Oracle",
       "SQL Developer",
       "React",
+      "Vite",
       "JavaScript",
+      "JWT",
       "Maven",
       "MUI",
       "Apache Tomcat",
@@ -200,7 +202,7 @@ const PROJECTS = {
       },
       {
         label: "Feature Spec",
-        href: "https://drive.google.com/file/d/1Mte5BqyBt4LHrNA75DZuq2UWTVwm669o/view?usp=sharing",
+        href: "https://docs.google.com/spreadsheets/d/15iBtpN3AsqXZT8KPAhWw4pJlF53TPtDDmZrLUsf9G30/edit?usp=sharing",
       },
       {
         label: "Presentation",
@@ -492,7 +494,6 @@ function renderProjectLinks(links) {
             return `
               <a class="modal-link" href="${link.href}" target="_blank" rel="noopener noreferrer">
                 <span>${link.label}</span>
-                <small>새 탭</small>
               </a>
             `;
           }
