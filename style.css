@@ -789,6 +789,43 @@ main {
   transform: rotate(-10deg);
 }
 
+.project-card-image,
+.project-modal-image {
+  background: var(--surface-container-highest);
+}
+
+.project-card-image::before,
+.project-card-image::after,
+.project-modal-image::before,
+.project-modal-image::after {
+  display: none;
+}
+
+.project-card-image img,
+.project-modal-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.project-card-image img {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.project-modal-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.project-modal-image img {
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--surface-container-lowest);
+}
+
 .project-body {
   display: flex;
   flex: 1;
