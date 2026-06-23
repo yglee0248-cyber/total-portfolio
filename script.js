@@ -36,6 +36,7 @@ const PROJECTS = {
       "추천 일정 이미지 처리",
       "관리자 약관 관리",
       "관리자 관심사 관리",
+      "AWS 기반 별도 배포 경험",
     ],
     implementationPoints: [
       "이메일 인증, 약관 동의, 관심사 선택을 포함한 회원가입 흐름을 구성했습니다.",
@@ -44,6 +45,7 @@ const PROJECTS = {
       "추천 일정 목록/상세 조회, 사용하기, 등록/수정/삭제 API 흐름과 화면 상태를 연결했습니다.",
       "추천 일정 이미지의 신규 업로드, 유지, 삭제 상태를 분리해 수정 요청에 반영했습니다.",
       "관리자 약관/관심사 관리 화면에서 목록, 등록, 수정, 삭제 흐름을 구현했습니다.",
+      "팀 배포와 별도로 AWS CloudFront 도메인을 기준으로 직접 배포를 진행하고, 배포 환경에서 화면 접근, API 연결, 정적 리소스 로딩 여부를 점검했습니다.",
     ],
     troubleshooting: [
       {
@@ -102,7 +104,7 @@ const PROJECTS = {
     links: [
       {
         label: "Live Demo",
-        href: "https://withday-mib.vercel.app/",
+        href: "https://d3276jh72yu5am.cloudfront.net/",
       },
       {
         label: "GitHub",
