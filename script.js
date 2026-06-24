@@ -448,10 +448,35 @@ function renderModalSection(title, content, icon) {
   `;
 }
 
+function getTechTagClassName(item) {
+  const classMap = {
+    Java: "is-java",
+    "Spring Boot": "is-spring",
+    MyBatis: "is-mybatis",
+    "REST API": "is-rest",
+    MySQL: "is-mysql",
+    Oracle: "is-oracle",
+    React: "is-react",
+    JavaScript: "is-javascript",
+    "Google OAuth": "is-google",
+    JWT: "is-jwt",
+    Cloudinary: "is-cloudinary",
+    OneSignal: "is-onesignal",
+    Maven: "is-maven",
+    "Apache Tomcat": "is-tomcat",
+    "Naver Map API": "is-naver",
+    "Kakao Postcode API": "is-kakao",
+    "Kakao Map API": "is-kakao",
+    "Public Data API": "is-public-data",
+  };
+
+  return classMap[item] ? `tech-tag ${classMap[item]}` : "tech-tag";
+}
+
 function renderTags(items) {
   return `
     <div class="tag-row">
-      ${items.map((item) => `<span class="tech-tag">${item}</span>`).join("")}
+      ${items.map((item) => `<span class="${getTechTagClassName(item)}">${item}</span>`).join("")}
     </div>
   `;
 }
